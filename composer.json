@@ -1,0 +1,19 @@
+{
+  "name": "geralt/firstplugin",
+  "description": "Building my first plugin on wp",
+  "type": "project",
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "AkhlakurRahman",
+      "email": "akhlakur.rahmann@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Includes\\": "./includes"
+    }
+  }
+}

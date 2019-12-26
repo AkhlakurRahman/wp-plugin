@@ -6,9 +6,11 @@
  * @package FirstPlugin
  */
 
-class FirstPluginDeactivate
+namespace Includes\Base;
+
+class Activate
 {
-  public static function deactivate()
+  public static function activate()
   {
     // Flush rewrite rules
     flush_rewrite_rules();
