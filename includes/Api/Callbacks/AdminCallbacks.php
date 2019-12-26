@@ -25,4 +25,20 @@ class AdminCallbacks extends BaseController
   {
     return require_once("$this->plugin_path/templates/widget.php");
   }
+
+  public function firstOptionsGroup($input)
+  {
+    return $input;
+  }
+
+  public function firstAdminSection()
+  {
+    echo 'Check this out!';
+  }
+
+  public function firstTextExample()
+  {
+    $value = esc_attr(get_option('text_example'));
+    echo '<input type="text" class="regular-text" name="text_example" value="' . $value . '" placeholder="Write something" />';
+  }
 }
