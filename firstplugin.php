@@ -35,34 +35,53 @@ if (!defined('ABSPATH')) {
 
 class FirstPlugin
 {
+  public $plugin;
+
   public function __construct()
   {
-    add_action('init', array($this, 'custom_post_type'));
+    $this->plugin = plugin_basename(__FILE__);
   }
 
   public function register()
   {
+    // Loading external css and js files
     add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+
+    // Adding menu for our plugin
+    add_action('admin_menu', array($this, 'add_admin_pages'));
+
+    // Adding settings for our plugin
+    add_filter("plugin_action_links_$this->plugin", array($this, 'settings_link'));
   }
 
-  public function activate()
+  public function settings_link($links)
   {
-    // Generate a Custom Post Type
-    $this->custom_post_type();
-
-    // Flush rewrite rules
-    flush_rewrite_rules();
+    $settings_link = '<a href="admin.php?page=first_plugin">Settings</a>';
+    // Adding custom links
+    array_push($links, $settings_link);
+    return $links;
   }
 
-  public function deactivate()
+  public function add_admin_pages()
   {
-    flush_rewrite_rules();
+    add_menu_page('First Plugin', 'First Plugin', 'manage_options', 'first_plugin', array($this, 'admin_index'), 'dashicons-store', 110);
   }
 
-  protected function enqueue()
+  public function admin_index()
+  {
+    require_once plugin_dir_path(__FILE__) . 'templates/admin.php';
+  }
+
+  protected function create_post_type()
+  {
+    add_action('init', array($this, 'custom_post_type'));
+  }
+
+  public function enqueue()
   {
     // Enqueue all our scripts
     wp_enqueue_style('mypluginstyle', plugins_url('/assets/style.css', __FILE__));
+    wp_enqueue_script('mypluginscript', plugins_url('/assets/scripts.js', __FILE__));
   }
 
   // static function uninstall()
@@ -82,10 +101,12 @@ if (class_exists('FirstPlugin')) {
 }
 
 // activation
-register_activation_hook(__FILE__, array($firstPlugin, 'activate'));
+require_once plugin_dir_path(__FILE__) . 'includes/firstplugin-activate.php';
+register_activation_hook(__FILE__, array('FirstPluginActivate', 'activate'));
 
 // deactivation
-register_deactivation_hook(__FILE__, array($firstPlugin, 'deactivate'));
+require_once plugin_dir_path(__FILE__) . 'includes/firstplugin-deactivate.php';
+register_deactivation_hook(__FILE__, array('FirstPluginDeactivate', 'deactivate'));
 
 // uninstall
 // register_uninstall_hook(__FILE__, FirstPlugin::uninstall());
