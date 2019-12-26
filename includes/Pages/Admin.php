@@ -78,8 +78,12 @@ class Admin extends BaseController
     $args = [
       [
         'option_group' => 'first_options_group',
-        'option_name' => 'text_example',
+        'option_name' => 'first_name',
         'callback' => array($this->callbacks, 'firstOptionsGroup')
+      ],
+      [
+        'option_group' => 'first_options_group',
+        'option_name' => 'last_name'
       ]
     ];
 
@@ -104,13 +108,24 @@ class Admin extends BaseController
   {
     $args = [
       [
-        'id' => 'text_example',
-        'title' => 'Text Example',
-        'callback' => array($this->callbacks, 'firstTextExample'),
+        'id' => 'first_name',
+        'title' => 'First Name',
+        'callback' => array($this->callbacks, 'firstName'),
         'page' => 'first_plugin',
         'section' => 'first_admin_index',
         'args' => [
-          'label_for' => 'text_example',
+          'label_for' => 'first_name',
+          'class' => 'example-class'
+        ]
+      ],
+      [
+        'id' => 'last_name',
+        'title' => 'Last Name',
+        'callback' => array($this->callbacks, 'lastName'),
+        'page' => 'first_plugin',
+        'section' => 'first_admin_index',
+        'args' => [
+          'label_for' => 'last_name',
           'class' => 'example-class'
         ]
       ]

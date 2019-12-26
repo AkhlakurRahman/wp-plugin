@@ -36,9 +36,15 @@ class AdminCallbacks extends BaseController
     echo 'Check this out!';
   }
 
-  public function firstTextExample()
+  public function firstName()
   {
-    $value = esc_attr(get_option('text_example'));
-    echo '<input type="text" class="regular-text" name="text_example" value="' . $value . '" placeholder="Write something" />';
+    $value = esc_attr(get_option('first_name'));
+    echo '<input type="text" class="regular-text" id="first_name" name="first_name" value="' . $value . '" placeholder="First Name" />';
+  }
+
+  public function lastName()
+  {
+    $value = esc_attr(get_option('last_name'));
+    echo '<input type="text" class="regular-text" id="last_name" name="last_name" value="' . $value . '" placeholder="Last Name" />';
   }
 }
