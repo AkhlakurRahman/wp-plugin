@@ -1,8 +1,14 @@
 <?php
 
+/**
+ * @package FirstPlugin
+ */
+
 namespace Includes\Base;
 
-class Enqueue
+use \Includes\Base\BaseController;
+
+class Enqueue extends BaseController
 {
 
   public function register()
@@ -14,7 +20,7 @@ class Enqueue
   public function enqueue()
   {
     // Enqueue all our scripts
-    wp_enqueue_style('mypluginstyle', PLUGIN_URL . '/assets/style.css');
-    wp_enqueue_script('mypluginscript', PLUGIN_URL . '/assets/scripts.js');
+    wp_enqueue_style('mypluginstyle', $this->plugin_url . '/assets/style.css');
+    wp_enqueue_script('mypluginscript', $this->plugin_url . '/assets/scripts.js');
   }
 }

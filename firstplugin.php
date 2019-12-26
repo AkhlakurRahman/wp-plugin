@@ -33,13 +33,34 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
+// Require once the composer autoload
 if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
   require_once dirname(__FILE__) . '/vendor/autoload.php';
 }
 
-define('PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('PLUGIN_URL', plugin_dir_url(__FILE__));
+/**
+ * Run upon plugin activation
+ */
+function activate_first_plugin()
+{
+  Includes\Base\Activate::activate();
+}
 
+register_activation_hook(__FILE__, 'activate_first_plugin');
+
+/**
+ * Run upon plugin deactivation
+ */
+function deactivate_first_plugin()
+{
+  Includes\Base\Deactivate::deactivate();
+}
+
+register_deactivation_hook(__FILE__, 'deactivate_first_plugin');
+
+/**
+ * Initializing classes of our plugin
+ */
 if (class_exists('Includes\\Init')) {
   Includes\Init::register_services();
 }
