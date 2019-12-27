@@ -7,12 +7,12 @@ use Includes\Base\BaseController;
 use Includes\Api\Callbacks\AdminCallbacks;
 use Includes\Api\Callbacks\ManagerCallbacks;
 
-class Admin extends BaseController
+class Dashboard extends BaseController
 {
   public $settings;
   public $pages;
   public $subpages;
-  public $callbacks;
+  // public $callbacks;
   public $callbacks_manager;
 
   public function register()
@@ -22,13 +22,13 @@ class Admin extends BaseController
     $this->callbacks_manager = new ManagerCallbacks();
 
     $this->setPages();
-    $this->setSubpages();
+    // $this->setSubpages();
 
     $this->setSettings();
     $this->setSections();
     $this->setFields();
 
-    $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
+    $this->settings->addPages($this->pages)->withSubPage('Dashboard')->register();
   }
 
   public function setPages()
@@ -46,35 +46,35 @@ class Admin extends BaseController
     ];
   }
 
-  public function setSubpages()
-  {
-    $this->subpages = [
-      [
-        'parent_slug' => 'first_plugin',
-        'page_title' => 'Custom Post Type',
-        'menu_title' => 'CPT',
-        'capability' => 'manage_options',
-        'menu_slug' => 'first_cpt',
-        'callback' => array($this->callbacks, 'adminCPT')
-      ],
-      [
-        'parent_slug' => 'first_plugin',
-        'page_title' => 'Custom Taxonomies',
-        'menu_title' => 'Taxonomies',
-        'capability' => 'manage_options',
-        'menu_slug' => 'first_taxonomies',
-        'callback' => array($this->callbacks, 'adminTaxonomy')
-      ],
-      [
-        'parent_slug' => 'first_plugin',
-        'page_title' => 'Custom Widgets',
-        'menu_title' => 'Widgets',
-        'capability' => 'manage_options',
-        'menu_slug' => 'first_widgets',
-        'callback' => array($this->callbacks, 'adminWidget')
-      ]
-    ];
-  }
+  // public function setSubpages()
+  // {
+  //   $this->subpages = [
+  //     [
+  //       'parent_slug' => 'first_plugin',
+  //       'page_title' => 'Custom Post Type',
+  //       'menu_title' => 'CPT',
+  //       'capability' => 'manage_options',
+  //       'menu_slug' => 'first_cpt',
+  //       'callback' => array($this->callbacks, 'adminCPT')
+  //     ],
+  //     [
+  //       'parent_slug' => 'first_plugin',
+  //       'page_title' => 'Custom Taxonomies',
+  //       'menu_title' => 'Taxonomies',
+  //       'capability' => 'manage_options',
+  //       'menu_slug' => 'first_taxonomies',
+  //       'callback' => array($this->callbacks, 'adminTaxonomy')
+  //     ],
+  //     [
+  //       'parent_slug' => 'first_plugin',
+  //       'page_title' => 'Custom Widgets',
+  //       'menu_title' => 'Widgets',
+  //       'capability' => 'manage_options',
+  //       'menu_slug' => 'first_widgets',
+  //       'callback' => array($this->callbacks, 'adminWidget')
+  //     ]
+  //   ];
+  // }
 
   public function setSettings()
   {
