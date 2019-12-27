@@ -12,7 +12,7 @@
     <div id="tab-1" class="tab-pane active">
       <form action="options.php" method="POST">
         <?php
-        settings_fields('first_options_group');
+        settings_fields('first_plugin_settings');
         do_settings_sections('first_plugin');
         submit_button();
         ?>

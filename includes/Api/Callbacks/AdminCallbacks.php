@@ -26,15 +26,15 @@ class AdminCallbacks extends BaseController
     return require_once("$this->plugin_path/templates/widget.php");
   }
 
-  public function firstOptionsGroup($input)
-  {
-    return $input;
-  }
+  // public function checkboxSanitize($input)
+  // {
+  //   return $input;
+  // }
 
-  public function firstAdminSection()
-  {
-    echo 'Check this out!';
-  }
+  // public function firstAdminSection()
+  // {
+  //   echo 'Check this out!';
+  // }
 
   public function firstName()
   {
