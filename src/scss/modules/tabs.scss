@@ -7,35 +7,36 @@
   margin-top: 16px;
   list-style: none;
   border-bottom: 1px solid transparent;
-}
 
-.nav-tabs > li {
-  margin-bottom: -1px;
-}
+  > li {
+    margin-bottom: -1px;
 
-.nav-tabs > li > a {
-  margin-right: 2px;
-  line-height: 1.5;
-  padding: 10px;
-  border: 1px solid transparent;
-  border-radius: 4px 4px 0 0;
-  text-decoration: none;
-  /* float: left; */
-  display: flex;
-  justify-content: flex-start;
-}
+    > a {
+      margin-right: 2px;
+      line-height: 1.5;
+      padding: 10px;
+      border: 1px solid transparent;
+      border-radius: 4px 4px 0 0;
+      text-decoration: none;
+      display: flex;
+      justify-content: flex-start;
 
-.nav-tabs > li > a:hover {
-  border-color: #eee #eee #ddd;
-}
+      &:hover {
+        border-color: #eee #eee #ddd;
+      }
+    }
 
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus {
-  color: #555;
-  cursor: default;
-  background-color: #fff;
-  border-color: transparent;
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: #555;
+        cursor: default;
+        background-color: #fff;
+        border-color: transparent;
+      }
+    }
+  }
 }
 
 .tab-content > .tab-pane {
@@ -43,11 +44,11 @@
   justify-content: flex-start;
   width: 100%;
   display: none;
-}
 
-.tab-content > .tab-pane.active {
-  display: block;
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.15);
+  &.active {
+    display: block;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.15);
+  }
 }

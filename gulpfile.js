@@ -47,10 +47,10 @@ var phpWatch = './**/*.php';
 gulp.task('browser-sync', function() {
   browserSync.init({
     proxy: projectURL,
-    https: {
-      key: fs.readFileSync('valid-ssl-key.pem', 'utf8'),
-      cert: fs.readFileSync('valid-ssl-cert.pem', 'utf8')
-    },
+    // https: {
+    //   key: fs.readFileSync('valid-ssl-key.pem', 'utf8'),
+    //   cert: fs.readFileSync('valid-ssl-cert.pem', 'utf8')
+    // },
     injectChanges: true,
     open: false
   });
