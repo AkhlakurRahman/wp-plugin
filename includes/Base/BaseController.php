@@ -31,4 +31,11 @@ class BaseController
       'chat_manager' => 'Activate Chat Manager'
     ];
   }
+
+  public function activated($key)
+  {
+    $option = get_option('first_plugin');
+    $activated = isset($option[$key]) ? $option[$key] : false;
+    return $activated;
+  }
 }

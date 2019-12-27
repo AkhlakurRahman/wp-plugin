@@ -21,20 +21,40 @@ class AdminCallbacks extends BaseController
     return require_once("$this->plugin_path/templates/taxonomy.php");
   }
 
-  public function adminWidget()
+  public function adminGallery()
   {
-    return require_once("$this->plugin_path/templates/widget.php");
+    echo '<h1>Admin Gallery</h1>';
   }
 
-  // public function checkboxSanitize($input)
-  // {
-  //   return $input;
-  // }
+  public function adminMediaWidget()
+  {
+    echo '<h1>Admin Media Widget</h1>';
+  }
 
-  // public function firstAdminSection()
-  // {
-  //   echo 'Check this out!';
-  // }
+  public function adminTestimonial()
+  {
+    echo '<h1>Admin Testimonial</h1>';
+  }
+
+  public function adminTemplate()
+  {
+    echo '<h1>Admin Template</h1>';
+  }
+
+  public function adminAuth()
+  {
+    echo '<h1>Admin Auth</h1>';
+  }
+
+  public function adminMembership()
+  {
+    echo '<h1>Admin Membership</h1>';
+  }
+
+  public function adminChat()
+  {
+    echo '<h1>Admin Chat</h1>';
+  }
 
   public function firstName()
   {

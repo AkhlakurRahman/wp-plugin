@@ -6,7 +6,7 @@ use Includes\Api\SettingsApi;
 use Includes\Base\BaseController;
 use Includes\Api\Callbacks\AdminCallbacks;
 
-class CustomPostTypeController extends BaseController
+class TemplateController extends BaseController
 {
   public $subpages = [];
   public $settings;
@@ -14,7 +14,7 @@ class CustomPostTypeController extends BaseController
 
   public function register()
   {
-    if (!$this->activated('cpt_manager')) return;
+    if (!$this->activated('templates_manager')) return;
 
     $this->settings = new SettingsApi();
     $this->callbacks = new AdminCallbacks();
@@ -22,8 +22,6 @@ class CustomPostTypeController extends BaseController
     $this->setSubpages();
 
     $this->settings->addSubPages($this->subpages)->register();
-
-    add_action('init', array($this, 'activate'));
   }
 
   public function setSubpages()
@@ -31,24 +29,12 @@ class CustomPostTypeController extends BaseController
     $this->subpages = [
       [
         'parent_slug' => 'first_plugin',
-        'page_title' => 'Custom Post Type',
-        'menu_title' => 'CPT Manager',
+        'page_title' => 'Templates Manager',
+        'menu_title' => 'Templates Manager',
         'capability' => 'manage_options',
-        'menu_slug' => 'first_cpt',
-        'callback' => array($this->callbacks, 'adminCPT')
+        'menu_slug' => 'templates_manager',
+        'callback' => array($this->callbacks, 'adminTemplate')
       ],
     ];
-  }
-
-  public function activate()
-  {
-    register_post_type('first_plugin', array(
-      'labels' => array(
-        'name' => 'Products',
-        'singular_name' => 'Product'
-      ),
-      'public' => true,
-      'has_archive' => true
-    ));
   }
 }

@@ -15,6 +15,14 @@ final class Init
       Base\Enqueue::class,
       Base\SettingsLink::class,
       Base\CustomPostTypeController::class,
+      Base\TaxonomyController::class,
+      Base\MediaController::class,
+      Base\GalleryController::class,
+      Base\TemplateController::class,
+      Base\TestimonialController::class,
+      Base\MembershipController::class,
+      Base\AuthController::class,
+      Base\ChatController::class,
     ];
   }
 
