@@ -68,7 +68,7 @@ class CustomPostTypeController extends BaseController
   {
     $args = [
       [
-        'id' => 'first_admin_cpt_index',
+        'id' => 'first_cpt_index',
         'title' => 'Custom Post Type Manager',
         'callback' => array($this->cpt_callbacks, 'cptSectionManager'),
         'page' => 'first_cpt'
@@ -84,34 +84,37 @@ class CustomPostTypeController extends BaseController
       [
         'id' => 'post_type',
         'title' => 'Custom Post Type ID',
-        'callback' => array($this->cpt_callbacks, 'textField'),
+        'callback' => array($this->cpt_callbacks, 'textFields'),
         'page' => 'first_cpt',
         'section' => 'first_cpt_index',
         'args' => [
           'option_name' => 'first_plugin_cpt',
-          'label_for' => 'post_type'
+          'label_for' => 'post_type',
+          'placeholder' => 'eg. product'
         ]
       ],
       [
         'id' => 'singular_name',
         'title' => 'Singular Name',
-        'callback' => array($this->cpt_callbacks, 'textField'),
+        'callback' => array($this->cpt_callbacks, 'textFields'),
         'page' => 'first_cpt',
         'section' => 'first_cpt_index',
         'args' => [
           'option_name' => 'first_plugin_cpt',
-          'label_for' => 'singular_name'
+          'label_for' => 'singular_name',
+          'placeholder' => 'eg. Product'
         ]
       ],
       [
         'id' => 'plural_name',
         'title' => 'Plural Name',
-        'callback' => array($this->cpt_callbacks, 'textField'),
+        'callback' => array($this->cpt_callbacks, 'textFields'),
         'page' => 'first_cpt',
         'section' => 'first_cpt_index',
         'args' => [
           'option_name' => 'first_plugin_cpt',
-          'label_for' => 'plural_name'
+          'label_for' => 'plural_name',
+          'placeholder' => 'eg. Products'
         ]
       ],
       [
@@ -140,56 +143,58 @@ class CustomPostTypeController extends BaseController
       ]
     ];
 
-    $this->cpt_callbacks->setFields($args);
+    $this->settings->setFields($args);
   }
 
   public function storeCustomPostTypes()
   {
+    $options = get_option('first_plugin_cpt');
+
     $this->custom_post_types[] = [
-      'post_type'             => 'test',
-      'name'                  => '',
-      'singular_name'         => '',
-      'menu_name'             => '',
-      'name_admin_bar'        => '',
-      'archives'              => '',
-      'attributes'            => '',
-      'parent_item_colon'     => '',
-      'all_items'             => '',
-      'add_new_item'          => '',
-      'add_new'               => '',
-      'new_item'              => '',
-      'edit_item'             => '',
-      'update_item'           => '',
-      'view_item'             => '',
-      'view_items'            => '',
-      'search_items'          => '',
-      'not_found'             => '',
-      'not_found_in_trash'    => '',
-      'featured_image'        => '',
-      'set_featured_image'    => '',
-      'remove_featured_image' => '',
-      'use_featured_image'    => '',
-      'insert_into_item'      => '',
-      'uploaded_to_this_item' => '',
-      'items_list'            => '',
-      'items_list_navigation' => '',
-      'filter_items_list'     => '',
-      'label'                 => '',
-      'description'           => '',
-      'supports'              => false,
-      'taxonomies'            => array(),
+      'post_type'             => $options['post_type'],
+      'name'                  => $options['plural_name'],
+      'singular_name'         => $options['singular_name'],
+      'menu_name'             => $options['plural_name'],
+      'name_admin_bar'        => $options['singular_name'],
+      'archives'              => $options['singular_name'] . ' Archives',
+      'attributes'            => $options['singular_name'] . ' Attributes',
+      'parent_item_colon'     => 'Parent ' . $options['singular_name'],
+      'all_items'             => 'All ' . $options['plural_name'],
+      'add_new_item'          => 'Add New ' . $options['singular_name'],
+      'add_new'               => 'Add New',
+      'new_item'              => 'New ' . $options['singular_name'],
+      'edit_item'             => 'Edit ' . $options['singular_name'],
+      'update_item'           => 'Update ' . $options['singular_name'],
+      'view_item'             => 'View ' . $options['singular_name'],
+      'view_items'            => 'View ' . $options['plural_name'],
+      'search_items'          => 'Search ' . $options['plural_name'],
+      'not_found'             => 'No ' . $options['singular_name'] . ' Found',
+      'not_found_in_trash'    => 'No ' . $options['singular_name'] . ' Found in Trash',
+      'featured_image'        => 'Featured Image',
+      'set_featured_image'    => 'Set Featured Image',
+      'remove_featured_image' => 'Remove Featured Image',
+      'use_featured_image'    => 'Use Featured Image',
+      'insert_into_item'      => 'Insert into ' . $options['singular_name'],
+      'uploaded_to_this_item' => 'Upload to this ' . $options['singular_name'],
+      'items_list'            => $options['plural_name'] . ' List',
+      'items_list_navigation' => $options['singular_name'] . 'List Navigation',
+      'filter_items_list'     => 'Filter ' . $options['plural_name'] . 'List',
+      'label'                 => $options['singular_name'],
+      'description'           => $options['plural_name'] . ' Custom Post Type',
+      'supports'              => array('title', 'editor', 'thumbnail'),
+      'taxonomies'            => array('category', 'post_tag'),
       'hierarchical'          => false,
-      'public'                => true,
+      'public'                => $options['public'],
       'show_ui'               => true,
       'show_in_menu'          => true,
       'menu_position'         => 5,
       'show_in_admin_bar'     => true,
       'show_in_nav_menus'     => true,
       'can_export'            => true,
-      'has_archive'           => true,
+      'has_archive'           => $options['has_archive'],
       'exclude_from_search'   => false,
       'publicly_queryable'    => true,
-      'capability_type'       => 'page'
+      'capability_type'       => 'post'
     ];
   }
 
