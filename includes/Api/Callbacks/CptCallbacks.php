@@ -2,24 +2,21 @@
 
 namespace Includes\Api\Callbacks;
 
-use Includes\Base\BaseController;
-
-class ManagerCallbacks extends BaseController
+class CptCallbacks
 {
-  public function checkboxSanitize($input)
+  public function cptSectionManager()
   {
-    $output = [];
-
-    foreach ($this->managers as $key => $value) {
-      $output[$key] = isset($input[$key]) ? true : false;
-    }
-
-    return $output;
+    echo 'Manage your Custom Post Types';
   }
 
-  public function adminSectionManager()
+  public function cptSanitize($input)
   {
-    echo 'Manage the Sections and Features of this plugin by activating the checkboxes below.';
+    return $input;
+  }
+
+  public function setFields($args)
+  {
+    // ret
   }
 
   public function checkboxField($args)
